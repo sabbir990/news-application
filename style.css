@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree&family=Montserrat&family=Poppins:wght@300&family=Roboto:wght@300;400&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 70px;
+  background-color: #dce3e8;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0
+}
+
+.logo-div{
+  width:auto;
+  height: auto;
+}
+
+.logo-div a img{
+  width: 120px;
+}
+
+.navigationButton-div ul{
+  display: flex;
+  align-items: center;
+  grid-gap: 20px;
+}
+
+.navigationButton-div ul li{
+  list-style: none;
+}
+
+.navigationButton-div ul li a{
+  text-decoration: none;
+  color: #456b8a;
+  transition: 0.3s
+}
+
+.navigationButton-div ul li a:hover{
+  font-weight: 600;
+}
+
+.navigationButton-div ul li a:active{
+  font-weight: 600;
+  color: #1d4566;
+}
+.search-div{
+  display: flex;
+  align-items: center;
+  grid-gap: 10px
+}
+.search-div input{
+  padding: 4px 8px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 4px #555759;
+}
+
+.search-div button{
+  background-color: #187ac9;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.3s
+}
+
+.search-div button:hover{
+  background-color: #456b8a;
+}
+
+.search-div button:active{
+  background-color: #1d4566
+}
+
+.card{
+  width: auto;
+  height: auto;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  box-shadow: 0 0 4px #4f5257;
+}
+
+.card img{
+  width: 100%;
+  height: 175px;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+
+}
+
+.card div{
+  padding: 10px;
+  overflow: hidden;
+
+}
+
+.card div h3{
+  cursor: pointer;
+}
+.contents{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+}
+
+.content-section{
+  padding: 80px 70px;
+}
+.seeMore-button{
+  padding: 4px 8px;
+  cursor: pointer;
+  background-color: #187ac9;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+}
+.visit-anchor{
+  background-color: #119c4b;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.active{
+  color: #187ac9;
+  font-weight: 700;
+}
