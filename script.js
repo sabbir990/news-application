@@ -18,22 +18,26 @@ window.addEventListener('load', () => {
   fetchData("USA")
 })
 
-function fetchData (query) {
-  fetch(`${url}${query}&apiKey=${API_KEY}`).then((res) => {
-    return res.json()
-  }).then((res) => {
-    bindData(res.articles)
-  })
+function fetchData(query) {
+  try {
+    fetch(`${url}${query}&apiKey=${API_KEY}`).then((res) => {
+      return res.json()
+    }).then((res) => {
+      bindData(res.articles)
+    })
+  }catch(error){
+    console.log(error)
+  }
 }
 
-function bindData (articles) {
+function bindData(articles) {
   let seeAllOrNot = false;
   const falseValue = "See More";
   const trueValue = "See Less";
   cardContainer.innerHTML = "";
 
   articles.forEach((elements) => {
-    if(!elements.urlToImage){
+    if (!elements.urlToImage) {
       return;
     }
     const cardDiv = document.createElement('div');
@@ -56,9 +60,9 @@ function bindData (articles) {
     const lineBreak = document.createElement('div')
     lineBreak.classList.add('line-break')
     seeMoreBtn.addEventListener('click', () => {
-      if(seeAllOrNot === true){
+      if (seeAllOrNot === true) {
         seeAllOrNot = false;
-      }else{
+      } else {
         seeAllOrNot = true;
       }
       seeMoreBtn.innerHTML = seeAllOrNot ? trueValue : falseValue;
@@ -67,11 +71,11 @@ function bindData (articles) {
 
     cardDesc.innerHTML = elements.description.slice(0, 100)
     cardDate.innerHTML = elements.author + "   |   " + new Date(elements.publishedAt).toLocaleString("en-US", {
-      timeZone : "Asia/Jakarta"
+      timeZone: "Asia/Jakarta"
     });
     cardImg.src = elements.urlToImage;
     cardTitle.innerHTML = elements.title.slice(0, 30)
-    
+
     cardDiv.appendChild(cardImg)
     cardDiv.appendChild(cardInformationSection)
     cardInformationSection.appendChild(cardTitle);
@@ -85,43 +89,43 @@ function bindData (articles) {
   })
 }
 
-function cricketNavClick () {
+function cricketNavClick() {
   fetchData(cricket.innerHTML);
-  if(cricket){
+  if (cricket) {
     cricket.classList.add('active')
 
-    if(finance.classList){
+    if (finance.classList) {
       finance.classList.remove('active')
     }
-    if(football.classList){
+    if (football.classList) {
       football.classList.remove('active')
     }
   }
 }
-function financeNavClick(){
+function financeNavClick() {
   fetchData(finance.innerHTML)
-  if(finance){
+  if (finance) {
     finance.classList.add('active');
 
-    if(cricket.classList){
+    if (cricket.classList) {
       cricket.classList.remove('active')
     }
 
-    if(football.classList){
+    if (football.classList) {
       football.classList.remove('active')
     }
   }
 }
-function footballNavClick(){
+function footballNavClick() {
   fetchData(football.innerHTML);
-  if(football){
+  if (football) {
     football.classList.add('active');
 
-    if(finance.classList){
+    if (finance.classList) {
       finance.classList.remove('active')
     }
 
-    if(cricket.classList){
+    if (cricket.classList) {
       cricket.classList.remove('active')
     }
   }
@@ -139,9 +143,9 @@ football.addEventListener('click', () => {
   footballNavClick();
 })
 
-function inputSearch (){
+function inputSearch() {
   fetchData(searchInput.value)
-  if(searchInput.value){
+  if (searchInput.value) {
     football.classList.remove('active');
     cricket.classList.remove('active');
     finance.classList.remove('active')
