@@ -25,7 +25,7 @@ function fetchData(query) {
     }).then((res) => {
       bindData(res.articles)
     })
-  }catch(error){
+  } catch (error) {
     console.log(error)
   }
 }
@@ -36,57 +36,59 @@ function bindData(articles) {
   const trueValue = "See Less";
   cardContainer.innerHTML = "";
 
-  articles.forEach((elements) => {
-    if (!elements.urlToImage) {
-      return;
-    }
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('card')
-    const cardImg = document.createElement('img');
-    const cardInformationSection = document.createElement('div')
-    cardInformationSection.classList.add('information-section')
-    const cardTitle = document.createElement('h3');
-    const cardDate = document.createElement('h6');
-    cardDate.style.color = "#4f5451"
-    const visitAnchor = document.createElement('a')
-    visitAnchor.innerHTML = "Visit News";
-    visitAnchor.href = elements.url;
-    visitAnchor.classList.add("visit-anchor")
-    visitAnchor.target = "_blank";
-    const cardDesc = document.createElement('p');
-    const seeMoreBtn = document.createElement('button');
-    seeMoreBtn.classList.add("seeMore-button")
-    seeMoreBtn.innerHTML = "See More"
-    const lineBreak = document.createElement('div')
-    lineBreak.classList.add('line-break')
-    seeMoreBtn.addEventListener('click', () => {
-      if (seeAllOrNot === true) {
-        seeAllOrNot = false;
-      } else {
-        seeAllOrNot = true;
+  if (articles) {
+    articles.forEach((elements) => {
+      if (!elements.urlToImage) {
+        return;
       }
-      seeMoreBtn.innerHTML = seeAllOrNot ? trueValue : falseValue;
-      cardDesc.innerHTML = !seeAllOrNot ? elements.description.slice(0, 100) : elements.description;
+      const cardDiv = document.createElement('div');
+      cardDiv.classList.add('card')
+      const cardImg = document.createElement('img');
+      const cardInformationSection = document.createElement('div')
+      cardInformationSection.classList.add('information-section')
+      const cardTitle = document.createElement('h3');
+      const cardDate = document.createElement('h6');
+      cardDate.style.color = "#4f5451"
+      const visitAnchor = document.createElement('a')
+      visitAnchor.innerHTML = "Visit News";
+      visitAnchor.href = elements.url;
+      visitAnchor.classList.add("visit-anchor")
+      visitAnchor.target = "_blank";
+      const cardDesc = document.createElement('p');
+      const seeMoreBtn = document.createElement('button');
+      seeMoreBtn.classList.add("seeMore-button")
+      seeMoreBtn.innerHTML = "See More"
+      const lineBreak = document.createElement('div')
+      lineBreak.classList.add('line-break')
+      seeMoreBtn.addEventListener('click', () => {
+        if (seeAllOrNot === true) {
+          seeAllOrNot = false;
+        } else {
+          seeAllOrNot = true;
+        }
+        seeMoreBtn.innerHTML = seeAllOrNot ? trueValue : falseValue;
+        cardDesc.innerHTML = !seeAllOrNot ? elements.description.slice(0, 100) : elements.description;
+      })
+
+      cardDesc.innerHTML = elements.description.slice(0, 100)
+      cardDate.innerHTML = elements.author + "   |   " + new Date(elements.publishedAt).toLocaleString("en-US", {
+        timeZone: "Asia/Jakarta"
+      });
+      cardImg.src = elements.urlToImage;
+      cardTitle.innerHTML = elements.title.slice(0, 30)
+
+      cardDiv.appendChild(cardImg)
+      cardDiv.appendChild(cardInformationSection)
+      cardInformationSection.appendChild(cardTitle);
+      cardInformationSection.appendChild(cardDate);
+      cardInformationSection.appendChild(lineBreak);
+      cardInformationSection.appendChild(visitAnchor)
+      cardInformationSection.appendChild(lineBreak);
+      cardInformationSection.appendChild(cardDesc)
+      cardInformationSection.appendChild(seeMoreBtn);
+      cardContainer.appendChild(cardDiv);
     })
-
-    cardDesc.innerHTML = elements.description.slice(0, 100)
-    cardDate.innerHTML = elements.author + "   |   " + new Date(elements.publishedAt).toLocaleString("en-US", {
-      timeZone: "Asia/Jakarta"
-    });
-    cardImg.src = elements.urlToImage;
-    cardTitle.innerHTML = elements.title.slice(0, 30)
-
-    cardDiv.appendChild(cardImg)
-    cardDiv.appendChild(cardInformationSection)
-    cardInformationSection.appendChild(cardTitle);
-    cardInformationSection.appendChild(cardDate);
-    cardInformationSection.appendChild(lineBreak);
-    cardInformationSection.appendChild(visitAnchor)
-    cardInformationSection.appendChild(lineBreak);
-    cardInformationSection.appendChild(cardDesc)
-    cardInformationSection.appendChild(seeMoreBtn);
-    cardContainer.appendChild(cardDiv);
-  })
+  }
 }
 
 function cricketNavClick() {
